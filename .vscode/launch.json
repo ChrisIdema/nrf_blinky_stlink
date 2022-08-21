@@ -11,6 +11,7 @@
             "device": "nrf51",
             "configFiles": ["${workspaceFolder}/openocd.cfg"],
             "showDevDebugOutput": "both",
+            "preLaunchTask": "build",
         },
         {
             "name": "nRF51 ST-link cppdbg",
@@ -22,7 +23,7 @@
             "serverLaunchTimeout": 2000,
             "filterStderr": true,
             "filterStdout": false,
-
+            "preLaunchTask": "build + flash",
             "MIMode": "gdb",
             "windows": {
                 "miDebuggerPath": "arm-none-eabi-gdb.exe",

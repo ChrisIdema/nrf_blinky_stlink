@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "flash",
+            "group": "build",
+            "type": "shell",
+            "command": "openocd.exe",
+            "windows":{
+                "args":[
+                    "-d2", 
+                    "-f", 
+                    "openocd.cfg",
+                    "-c", 
+                    "'init_reset halt; program \"C:/git/nrf_blinky_stlink/blinky/build/zephyr/zephyr.hex\" verify; reset; exit'",
+                ],
+            },
+            "linux":{
+                "args":[
+                    "-d2", 
+                    "-f", 
+                    "openocd.cfg",
+                    "-c", 
+                    "'init_reset halt; program \"${workspaceFolder}/blinky/build/zephyr/zephyr.hex\" verify; reset; exit'",
+                ],
+            },
+            "problemMatcher": [],
+        },  
+        {
+            "label" : "build",
+            "type": "nrf-connect-build",
+        },
+        {
+            "label": "build + flash",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": ["build", "flash"],
+            "problemMatcher": [],
+        },     
+    ]   
+}
