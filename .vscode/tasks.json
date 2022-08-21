@@ -4,9 +4,9 @@
         {
             "label": "flash",
             "group": "build",
-            "type": "shell",
-            "command": "openocd.exe",
+            "type": "shell",            
             "windows":{
+                "command": "openocd.exe",
                 "args":[
                     "-d2", 
                     "-f", 
@@ -16,6 +16,7 @@
                 ],
             },
             "linux":{
+                "command": "openocd",
                 "args":[
                     "-d2", 
                     "-f", 
