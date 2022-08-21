@@ -22,22 +22,30 @@
             "serverLaunchTimeout": 2000,
             "filterStderr": true,
             "filterStdout": false,
-            
-            "setupCommands": [
-                { "text": "target extended-remote localhost:3333", "description": "connect to target", "ignoreFailures": false },
-                { "text": "-file-exec-and-symbols C:/git/nrf_blinky_stlink/blinky/build/zephyr/zephyr.elf", "description": "load file", "ignoreFailures": false},
-                { "text": "-interpreter-exec console \"monitor halt\"", "ignoreFailures": false },
-                { "text": "-interpreter-exec console \"set remote hardware-breakpoint-limit 4\"", "ignoreFailures": false },
-                { "text": "-interpreter-exec console \"set remote hardware-watchpoint-limit 2\"", "ignoreFailures": false },
-            ],
+
             "MIMode": "gdb",
             "windows": {
                 "miDebuggerPath": "arm-none-eabi-gdb.exe",
-                "debugServerPath": "openocd.exe"
+                "debugServerPath": "openocd.exe",
+                "setupCommands": [
+                    { "text": "target extended-remote localhost:3333", "description": "connect to target", "ignoreFailures": false },
+                    { "text": "-file-exec-and-symbols C:/git/nrf_blinky_stlink/blinky/build/zephyr/zephyr.elf", "description": "load file", "ignoreFailures": false},
+                    // { "text": "-file-exec-and-symbols ${workspaceFolder}/blinky/build/zephyr/zephyr.elf", "description": "load file", "ignoreFailures": false},//doesn't work
+                    { "text": "-interpreter-exec console \"monitor halt\"", "ignoreFailures": false },
+                    { "text": "-interpreter-exec console \"set remote hardware-breakpoint-limit 4\"", "ignoreFailures": false },
+                    { "text": "-interpreter-exec console \"set remote hardware-watchpoint-limit 2\"", "ignoreFailures": false },
+                ],
             },
             "linux": {
                 "miDebuggerPath": "arm-none-eabi-gdb",
-                "debugServerPath": "openocd"
+                "debugServerPath": "openocd",
+                "setupCommands": [
+                    { "text": "target extended-remote localhost:3333", "description": "connect to target", "ignoreFailures": false },
+                    { "text": "-file-exec-and-symbols ${workspaceFolder}/blinky/build/zephyr/zephyr.elf", "description": "load file", "ignoreFailures": false},
+                    { "text": "-interpreter-exec console \"monitor halt\"", "ignoreFailures": false },
+                    { "text": "-interpreter-exec console \"set remote hardware-breakpoint-limit 4\"", "ignoreFailures": false },
+                    { "text": "-interpreter-exec console \"set remote hardware-watchpoint-limit 2\"", "ignoreFailures": false },
+                ],
             },
             "logging": {
                 "moduleLoad": true,
