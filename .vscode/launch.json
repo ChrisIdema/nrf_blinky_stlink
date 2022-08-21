@@ -3,31 +3,28 @@
     "configurations": [
         {
             "name": "nRF51 ST-link",
-            "cwd": "${workspaceRoot}",
-            "executable": "${workspaceRoot}/blinky/build/zephyr/zephyr.elf",
-            "request": "launch",
             "type": "cortex-debug",
+            "request": "launch",            
+            "executable": "${workspaceFolder}/blinky/build/zephyr/zephyr.elf",
+            "cwd": "${workspaceFolder}",
             "servertype": "openocd",
             "device": "nrf51",
-            "serverpath": "openocd.exe",
-            "gdbPath": "arm-none-eabi-gdb.exe",
-            "configFiles": ["${workspaceRoot}/openocd.cfg"],
-            "showDevDebugOutput": "both",
+            "configFiles": ["${workspaceFolder}/openocd.cfg"],
+            "showDevDebugOutput": "both",            
         },
         {
             "name": "nRF51 ST-link cppdbg",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/blinky/build/zephyr/zephyr.elf",
-            "cwd": "${workspaceRoot}",
-            "debugServerArgs": "-f ${workspaceRoot}/openocd.cfg",
+            "program": "${workspaceFolder}/blinky/build/zephyr/zephyr.elf",
+            "cwd": "${workspaceFolder}",
+            "debugServerArgs": "-d2 -f ${workspaceFolder}/openocd.cfg",
             "serverLaunchTimeout": 2000,
             "filterStderr": true,
             "filterStdout": false,
-            // "serverStarted": "target halted due to debug-request, current mode: Thread",
             "setupCommands": [
                 { "text": "target extended-remote localhost:3333", "description": "connect to target", "ignoreFailures": false },
-                { "text": "-file-exec-and-symbols C:\/git\/nrf_blinky_stlink\/blinky\/build\/zephyr\/zephyr.elf", "description": "load file", "ignoreFailures": false},                
+                { "text": "-file-exec-and-symbols C:/git/nrf_blinky_stlink/blinky/build/zephyr/zephyr.elf", "description": "load file", "ignoreFailures": false},                                     
                 { "text": "-interpreter-exec console \"monitor halt\"", "ignoreFailures": false },
                 { "text": "-interpreter-exec console \"set remote hardware-breakpoint-limit 4\"", "ignoreFailures": false },
                 { "text": "-interpreter-exec console \"set remote hardware-watchpoint-limit 2\"", "ignoreFailures": false },
@@ -45,8 +42,5 @@
                 "exceptions": true,
             },
         },     
-
-
-
     ]
 }
