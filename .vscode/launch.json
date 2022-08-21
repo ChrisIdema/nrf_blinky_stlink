@@ -12,9 +12,11 @@
             "configFiles": ["${workspaceFolder}/openocd.cfg"],
             "showDevDebugOutput": "both",
             "preLaunchTask": "build",
+            "svdFile": "${workspaceFolder}/nrf51.svd"
         },
         {
             "name": "nRF51 ST-link cppdbg",
+            // "svdPath": "${workspaceFolder}/nrf51.svd", //doesn't seem to do anything
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/blinky/build/zephyr/zephyr.elf",
