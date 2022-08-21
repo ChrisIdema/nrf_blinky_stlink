@@ -4,13 +4,13 @@
         {
             "name": "nRF51 ST-link",
             "type": "cortex-debug",
-            "request": "launch",            
+            "request": "launch",
             "executable": "${workspaceFolder}/blinky/build/zephyr/zephyr.elf",
             "cwd": "${workspaceFolder}",
             "servertype": "openocd",
             "device": "nrf51",
             "configFiles": ["${workspaceFolder}/openocd.cfg"],
-            "showDevDebugOutput": "both",            
+            "showDevDebugOutput": "both",
         },
         {
             "name": "nRF51 ST-link cppdbg",
@@ -22,17 +22,22 @@
             "serverLaunchTimeout": 2000,
             "filterStderr": true,
             "filterStdout": false,
+            
             "setupCommands": [
                 { "text": "target extended-remote localhost:3333", "description": "connect to target", "ignoreFailures": false },
-                { "text": "-file-exec-and-symbols C:/git/nrf_blinky_stlink/blinky/build/zephyr/zephyr.elf", "description": "load file", "ignoreFailures": false},                                     
+                { "text": "-file-exec-and-symbols C:/git/nrf_blinky_stlink/blinky/build/zephyr/zephyr.elf", "description": "load file", "ignoreFailures": false},
                 { "text": "-interpreter-exec console \"monitor halt\"", "ignoreFailures": false },
                 { "text": "-interpreter-exec console \"set remote hardware-breakpoint-limit 4\"", "ignoreFailures": false },
                 { "text": "-interpreter-exec console \"set remote hardware-watchpoint-limit 2\"", "ignoreFailures": false },
             ],
+            "MIMode": "gdb",
             "windows": {
-                "MIMode": "gdb",
                 "miDebuggerPath": "arm-none-eabi-gdb.exe",
                 "debugServerPath": "openocd.exe"
+            },
+            "linux": {
+                "miDebuggerPath": "arm-none-eabi-gdb",
+                "debugServerPath": "openocd"
             },
             "logging": {
                 "moduleLoad": true,
@@ -41,6 +46,6 @@
                 "programOutput": true,
                 "exceptions": true,
             },
-        },     
+        },
     ]
 }
