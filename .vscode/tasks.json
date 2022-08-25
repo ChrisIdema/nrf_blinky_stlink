@@ -6,12 +6,7 @@
             "detail": "performs a mass erase, also unlocks new MCU with pre-flashed bootloader",
             "group": "build",
             "type": "shell",  
-            "windows":{
-                "command": "openocd.exe",
-            },
-            "linux":{
-                "command": "openocd",
-            },
+            "command": "openocd",
             "args":[ 
                 "-d2", 
                 "-f", 
@@ -24,20 +19,13 @@
         {
             "label": "flash",
             "group": "build",
-            "type": "shell",     
-            "windows":{
-                "command": "openocd.exe",
-                "args":[
-                    "-d2", 
-                    "-f", 
-                    "openocd.cfg",
-                    "-c", 
-                    "'init_reset halt; program \"C:/git/nrf_blinky_stlink/blinky/build/zephyr/zephyr.hex\" verify; reset; exit'",
-                    // "'init_reset halt; program \"${workspaceFolder}/blinky/build/zephyr/zephyr.hex\" verify; reset; exit'", // doesn't work
-                ],
+            "type": "shell",  
+            "windows":{     
+                //ugly work-arround to substitute \ with /                   
+                "command": "\"$Env:wsf='${workspaceFolder}'; $Env:wsf=$Env:wsf -replace \\\"\\\\\\\\\\\",\\\"/\\\"; echo $Env:wsf; openocd -d2 -f openocd.cfg -c \\\"init_reset halt; program $Env:wsf/blinky/build/zephyr/zephyr.hex verify; reset; exit\\\"\"",           
             },
             "linux":{
-                "command": "openocd",
+                "command": "openocd", 
                 "args":[
                     "-d2", 
                     "-f", 
@@ -58,7 +46,6 @@
             "dependsOrder": "sequence",
             "dependsOn": ["build", "flash"],
             "problemMatcher": [],
-        }, 
-            
+        },                
     ]   
 }
