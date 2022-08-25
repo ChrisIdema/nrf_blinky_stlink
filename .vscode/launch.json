@@ -17,6 +17,7 @@
         {
             "name": "nRF51 ST-link cppdbg",
             // "svdPath": "${workspaceFolder}/nrf51.svd", //doesn't seem to do anything
+            // "svdPath": "C:/git/nrf_blinky_stlink/nrf51.svd", //doesn't seem to do anything
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/blinky/build/zephyr/zephyr.elf",
@@ -25,15 +26,14 @@
             "serverLaunchTimeout": 2000,
             "filterStderr": true,
             "filterStdout": false,
-            "preLaunchTask": "build + flash",
             "MIMode": "gdb",
             "windows": {
                 "miDebuggerPath": "arm-none-eabi-gdb.exe",
                 "debugServerPath": "openocd.exe",
                 "setupCommands": [
                     { "text": "target extended-remote localhost:3333", "description": "connect to target", "ignoreFailures": false },
-                    { "text": "-file-exec-and-symbols C:/git/nrf_blinky_stlink/blinky/build/zephyr/zephyr.elf", "description": "load file", "ignoreFailures": false},
-                    // { "text": "-file-exec-and-symbols ${workspaceFolder}/blinky/build/zephyr/zephyr.elf", "description": "load file", "ignoreFailures": false},//doesn't work
+                    // { "text": "-file-exec-and-symbols C:/git/nrf_blinky_stlink/blinky/build/zephyr/zephyr.elf", "description": "load file", "ignoreFailures": false},//not needed
+                    // { "text": "-file-exec-and-symbols \"${workspaceFolder}/blinky/build/zephyr/zephyr.elf\"", "description": "load file", "ignoreFailures": false},//doesn't work
                     { "text": "-interpreter-exec console \"monitor halt\"", "ignoreFailures": false },
                     { "text": "-interpreter-exec console \"set remote hardware-breakpoint-limit 4\"", "ignoreFailures": false },
                     { "text": "-interpreter-exec console \"set remote hardware-watchpoint-limit 2\"", "ignoreFailures": false },
