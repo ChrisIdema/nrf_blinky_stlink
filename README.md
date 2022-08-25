@@ -4,15 +4,15 @@ Blinky on an nRF51822, flashing and debugging with ST-Link v2.
 
 # Setup
 
-# nRF tools
+## nRF tools
 
 - https://www.nordicsemi.com/Products/Development-software/nRF-Connect-SDK/GetStarted#infotabs
 - https://www.nordicsemi.com/Products/Development-tools/nRF-Command-Line-Tools/Download
 - https://www.nordicsemi.com/Products/Development-tools/nRF-Connect-for-desktop/Download
 
-# openocd
+## openocd
 
-# arm-none-eabi-gdb
+## arm-none-eabi-gdb
 
 # Build
 
